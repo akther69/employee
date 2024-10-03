@@ -11,10 +11,10 @@
     <h1 class="text-center fw-bold">Employee List</h1>
     <div class="container">
         <div class="row">
-            <div class="col-1"></div>
-            <div class="col-10">
+            <div class="col-"></div>
+            <div class="col-12">
                 <table class="table table-dark table-stripped">
-                    <tr>
+                    <tr class="text-center">
                         <th>Name</th>
                         <th>Age</th>
                         <th>Salary</th>
@@ -26,7 +26,7 @@
                     </tr>
                     {%for e in employees%}
                    <tr>
-                    <td>{{e.name}}</td>
+                    <td class="p-4">{{e.name}}</td>
                     <td>{{e.age}}</td>
                     <td>{{e.salary}}</td>
                     <td>{{e.designation}}</td>
@@ -35,14 +35,19 @@
                     <td>{{e.place}}</td>
                     <td><a href="{%url 'emp-info' e.id%}" class="btn btn-success">View</a>
                    <a href="{%url 'emp-delete' e.id%}" class="btn btn-danger">Remove</a>
-                   <a href="{%url 'emp-update' e.id%}" class="btn btn-primary">Edit</a></td>
+                   <a href="{%url 'emp-update' e.id%}" class="btn btn-warning">Edit</a>
+                   <a href="{%url 'work-all' e.id%}" class="btn btn-info">Work List</a>
+                   <a href="{%url 'work-add' e.id%}" class="btn btn-primary">Add Work</a>
+                </td>
                    </tr>
                     {%endfor%}
                 </table>
             </div>
-            <div class="col-1"></div>
+            <div class="col-"></div>
         </div>
     </div>
+    <center>
+    <div><a href="{%url 'emp-add'%}" class="btn btn-dark">Add Employee</a></div></center>
 
     <!-- {%for e in employees%}
     <div>

@@ -70,15 +70,19 @@ class WorkCreateView(View):
     
     def post(self,request,*args, **kwargs):
         
+        id=kwargs.get("pk")
+        
+        employee_instance=Employee.objects.filter(id=id).first()
+        
         form_instance=WorkForm(request.POST)
         
         if form_instance.is_valid():
             
             data=form_instance.cleaned_data
             
-            Work.objects.create(**data)
+            Work.objects.create(**data,employee_object= employee_instance)
             
-            return redirect("work-list")
+            return redirect("emp-list")
             
         return render(request,"work_add.html")
     
@@ -87,6 +91,16 @@ class WorkListView(View):
     def get(self,request,*args, **kwargs):
         qs=Work.objects.all()
         return render(request,"work_list.html",{"works":qs})
+    
+class WorkListView1(View):
+    
+    def get(self,request,*args, **kwargs):
+        
+        id=kwargs.get("pk")
+        
+        qs=Work.objects.filter(employee_object=id)
+        
+        return render(request,"work_list1.html",{"works":qs})
     
 class WorkUpdateView(View):
     
@@ -127,4 +141,4 @@ class WorkDeleteView(View):
         
         Work.objects.get(id=id).delete()
         
-        return redirect("work-list")
+        return redirect("emp-list")

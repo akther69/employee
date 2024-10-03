@@ -25,9 +25,10 @@ urlpatterns = [
     path("employees/<int:pk>/",views.EmployeeDetailView.as_view(),name="emp-info"),
     path("employees/<int:pk>/remove/",views.EmployeeDeleteView.as_view(),name="emp-delete"),
     path("employees/<int:pk>/change/",views.EmployeeUpdateView.as_view(),name="emp-update"),
-    path("works/add/",views.WorkCreateView.as_view(),name="work-add"),
+    path("works/add/<int:pk>/",views.WorkCreateView.as_view(),name="work-add"),
     path("works/all/",views.WorkListView.as_view(),name="work-list"),
     path("works/<int:pk>/change/",views.WorkUpdateView.as_view(),name="work-edit"),
     path("works/<int:pk>/remove/",views.WorkDeleteView.as_view(),name="work-remove"),
+    path("works/<int:pk>/all/",views.WorkListView1.as_view(),name="work-all"),
     path("api/",include("api.urls"))
 ]
