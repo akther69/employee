@@ -10,12 +10,26 @@ class Employee(models.Model):
     phone=models.IntegerField()
     place=models.CharField(max_length=30,null=True)
     
+    
+    @property
+    def works(self):
+        
+        return Work.objects.filter(employee_object=self)
+    
+    @property
+    def work_count(self):
+        
+        return self.works.count()
+    
     # model string representation
     def __str__(self):
         return self.name
     
     
 class Work(models.Model):
+    
+    employee_object=models.ForeignKey(Employee,on_delete=models.CASCADE)
+    
     title=models.CharField(max_length=100)
     
     description=models.CharField(max_length=100)
